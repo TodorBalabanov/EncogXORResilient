@@ -49,6 +49,8 @@ public class XORResilient {
 
 	private static void experiment(String title, ActivationFunction activation, NeuralDataSet training,
 			double epsilon) {
+		String result = "";
+
 		BasicNetwork network = new BasicNetwork();
 		network.addLayer(new BasicLayer(activation, true, 2));
 		network.addLayer(new BasicLayer(activation, true, 4));
@@ -61,31 +63,35 @@ public class XORResilient {
 		int epoch = 1;
 		long start = System.currentTimeMillis();
 
-		System.out.println(title + " Neural Network Training:");
-		System.out.println();
+		// System.out.println(title + " Neural Network Training:");
+		// System.out.println();
 
-		System.out.println("Time\tEpoch\tError");
+		// System.out.println("Time\tEpoch\tError");
 		do {
 			train.iteration();
-			System.out.println((System.currentTimeMillis() - start) + "\t" + epoch + "\t" + train.getError());
+			// System.out.println((System.currentTimeMillis() - start) + "\t" +
+			// epoch + "\t" + train.getError());
 			epoch++;
 		} while (train.getError() > epsilon && (System.currentTimeMillis() - start) < MAX_TRAINING_TIME
 				&& epoch < MAX_EPOCHS);
-		for (int e = epoch; e < MAX_EPOCHS; e++) {
-			System.out.println();
-		}
-		System.out.println();
+		// for (int e = epoch; e < MAX_EPOCHS; e++) {
+		// System.out.println();
+		// }
+		// System.out.println();
 
-		System.out.println(title + " Neural Network Results:");
-		System.out.println();
+		System.out.println(title + "\t" + (System.currentTimeMillis() - start) + "\t" + epoch);
 
-		System.out.println("Input 1\tInput 2\tIdeal\tActual");
+		// System.out.println(title + " Neural Network Results:");
+		// System.out.println();
+
+		// System.out.println("Input 1\tInput 2\tIdeal\tActual");
 		for (MLDataPair pair : training) {
 			final MLData output = network.compute(pair.getInput());
-			System.out.println(pair.getInput().getData(0) + "\t" + pair.getInput().getData(1) + "\t" + output.getData(0)
-					+ "\t" + pair.getIdeal().getData(0));
+			// System.out.println(pair.getInput().getData(0) + "\t" +
+			// pair.getInput().getData(1) + "\t" + output.getData(0)
+			// + "\t" + pair.getIdeal().getData(0));
 		}
-		System.out.println();
+		// System.out.println();
 	}
 
 	public static void main(final String args[]) {

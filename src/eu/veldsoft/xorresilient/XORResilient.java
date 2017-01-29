@@ -95,13 +95,16 @@ public class XORResilient {
 	}
 
 	public static void main(final String args[]) {
-		experiment("Fading Sine", new ActivationFadingSin(1), MINUS_PLUS_ONE_TRAINING, TARGET_ANN_ERROR);
-		experiment("Sigmoid", new ActivationSigmoid(), ZERO_ONE_TRAINING, TARGET_ANN_ERROR);
-		experiment("Bipolar Sigmoid", new ActivationBipolarSteepenedSigmoid(), MINUS_PLUS_ONE_TRAINING,
-				TARGET_ANN_ERROR);
-		experiment("Logarithm", new ActivationLOG(), MINUS_PLUS_ONE_TRAINING, TARGET_ANN_ERROR);
-		experiment("Hyperbolic Tangent", new ActivationTANH(), MINUS_PLUS_ONE_TRAINING, TARGET_ANN_ERROR);
-		experiment("Elliott Symmetric", new ActivationElliottSymmetric(), MINUS_PLUS_ONE_TRAINING, TARGET_ANN_ERROR);
+		for (long g = 0; g < 300; g++) {
+			experiment("Fading Sine", new ActivationFadingSin(1), MINUS_PLUS_ONE_TRAINING, TARGET_ANN_ERROR);
+			experiment("Sigmoid", new ActivationSigmoid(), ZERO_ONE_TRAINING, TARGET_ANN_ERROR);
+			experiment("Bipolar Sigmoid", new ActivationBipolarSteepenedSigmoid(), MINUS_PLUS_ONE_TRAINING,
+					TARGET_ANN_ERROR);
+			experiment("Logarithm", new ActivationLOG(), MINUS_PLUS_ONE_TRAINING, TARGET_ANN_ERROR);
+			experiment("Hyperbolic Tangent", new ActivationTANH(), MINUS_PLUS_ONE_TRAINING, TARGET_ANN_ERROR);
+			experiment("Elliott Symmetric", new ActivationElliottSymmetric(), MINUS_PLUS_ONE_TRAINING,
+					TARGET_ANN_ERROR);
+		}
 	}
 
 }
